@@ -37,7 +37,7 @@
   },
   "devDependencies": {
     "@angular/build": "^20.2.1",
-    "@angular/cli": "^20.2.1",
+    "@angular/cli": "^20.3.18",
     "@angular/compiler-cli": "^20.2.0",
     "@tailwindcss/postcss": "^4.1.12",
     "@types/jasmine": "~5.1.0",
