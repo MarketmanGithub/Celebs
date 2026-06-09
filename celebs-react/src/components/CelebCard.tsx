@@ -18,7 +18,7 @@ export default function CelebCard({
       await deleteCeleb(celeb.id);
       toast.success(`${celeb.name} deleted.`);
       if (onDelete) onDelete();
-    } catch (error) {
+    } catch {
       toast.error("Failed to delete celeb.");
     }
   };
