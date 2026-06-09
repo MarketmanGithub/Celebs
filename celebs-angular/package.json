@@ -27,7 +27,7 @@
     "@angular/common": "^20.2.3",
     "@angular/compiler": "^20.3.18",
     "@angular/core": "^20.2.3",
-    "@angular/forms": "^20.2.3",
+    "@angular/forms": "^22.0.0",
     "@angular/platform-browser": "^20.2.3",
     "@angular/router": "^20.2.3",
     "ngx-toastr": "^19.0.0",
