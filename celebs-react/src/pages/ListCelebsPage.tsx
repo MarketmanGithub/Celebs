@@ -3,7 +3,7 @@ import { getAllCelebs, resetCelebs } from '../api/celebApi';
 import type { Celeb } from '../models/celeb';
 import CelebCard from '../components/CelebCard';
 import CelebToolbar from '../components/CelebToolbar';
-import { DragDropContext, Droppable, Draggable } from '@hello-pangea/dnd';
+import { DragDropContext, Droppable, Draggable, type DropResult } from '@hello-pangea/dnd';
 import config from '../config';
 
 
@@ -23,8 +23,19 @@ export default function ListCelebsPage() {
   };
 
   useEffect(() => {
-    fetchCelebs();
-  }, []);
+    let active = true;
+    getAllCelebs(sortBy)
+      .then((data) => {
+        if (active) setCelebs(data);
+      })
+      .catch((err) => console.error('Failed to load celebs:', err))
+      .finally(() => {
+        if (active) setLoading(false);
+      });
+    return () => {
+      active = false;
+    };
+  }, [sortBy]);
 
   useEffect(() => {
     document.title = config.appName;
@@ -35,7 +46,7 @@ export default function ListCelebsPage() {
     fetchCelebs();
   };
 
-  const handleDragEnd = (result: any) => {
+  const handleDragEnd = (result: DropResult) => {
     if (!result.destination) return;
     const reordered = Array.from(celebs);
     const [removed] = reordered.splice(result.source.index, 1);
