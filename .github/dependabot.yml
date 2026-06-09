@@ -1,0 +1,61 @@
+# Dependabot configuration
+# Docs: https://docs.github.com/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file
+version: 2
+updates:
+  # --- Angular frontend (npm) ---
+  - package-ecosystem: "npm"
+    directory: "/celebs-angular"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 10
+    groups:
+      # Keep all Angular packages bumped together (they must stay in lockstep,
+      # otherwise compiler/compiler-cli/cli peer deps conflict and break the build).
+      angular:
+        patterns:
+          - "@angular*"
+      # Batch remaining minor/patch updates into a single PR to cut noise.
+      minor-and-patch:
+        update-types:
+          - "minor"
+          - "patch"
+
+  # --- React frontend (npm) ---
+  - package-ecosystem: "npm"
+    directory: "/celebs-react"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 10
+    groups:
+      minor-and-patch:
+        update-types:
+          - "minor"
+          - "patch"
+
+  # --- .NET API (NuGet) ---
+  - package-ecosystem: "nuget"
+    directory: "/celebs-api"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 10
+    groups:
+      minor-and-patch:
+        update-types:
+          - "minor"
+          - "patch"
+
+  # --- IMDb scraper (NuGet) ---
+  - package-ecosystem: "nuget"
+    directory: "/ImdbScraper"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 10
+    groups:
+      minor-and-patch:
+        update-types:
+          - "minor"
+          - "patch"
