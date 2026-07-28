@@ -1,7 +1,7 @@
 <div
   [class]="viewMode === 'grid' 
     ? 'relative bg-white rounded-2xl shadow-md p-4 w-full max-w-sm' 
-    : 'relative bg-white rounded-xl shadow p-2 w-full max-w-xs flex items-center'"
+    : 'relative bg-white rounded-xl shadow-sm p-2 w-full max-w-xs flex items-center'"
   [style]="viewMode === 'list' ? 'min-width: 320px; min-height: 128px' : ''"
 >
   <button
@@ -26,7 +26,7 @@
     <img
       [src]="celeb.image"
       [alt]="celeb.name"
-      class="w-1/2 h-32 object-cover rounded mr-4"
+      class="w-1/2 h-32 object-cover rounded-sm mr-4"
       style="min-width: 96px; max-width: 128px"
     />
   </ng-template>
