@@ -9,6 +9,13 @@ updates:
       interval: "weekly"
       day: "monday"
     open-pull-requests-limit: 10
+    ignore:
+      # TypeScript majors are gated by our toolchain, not by us: @angular/build and
+      # @angular/compiler-cli peer-require `typescript >=6.0 <6.1`, so a TS 7 bump
+      # installs cleanly and then fails `ng build`. Reopen this when Angular ships a
+      # release whose compiler-cli admits the next TS major.
+      - dependency-name: "typescript"
+        update-types: ["version-update:semver-major"]
     groups:
       # Keep all Angular packages bumped together (they must stay in lockstep,
       # otherwise compiler/compiler-cli/cli peer deps conflict and break the build).
@@ -28,6 +35,11 @@ updates:
       interval: "weekly"
       day: "monday"
     open-pull-requests-limit: 10
+    ignore:
+      # typescript-eslint peer-requires `typescript >=4.8.4 <6.1.0`, so a TS 7 bump
+      # breaks `npm ci` outright. Reopen when typescript-eslint raises the cap.
+      - dependency-name: "typescript"
+        update-types: ["version-update:semver-major"]
     groups:
       minor-and-patch:
         update-types:
